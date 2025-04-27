@@ -15,22 +15,26 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Setup lazy.nvim
+vim.opt.shiftwidth = 4  -- Number of spaces to use for each step of (auto)indent
+vim.opt.tabstop = 4     -- Number of spaces that a <Tab> in the file counts for
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.smartindent = true -- Enable smart indentation
+
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+vim.api.nvim_set_option("clipboard","unnamedplus")
+
+
 require("lazy").setup({
   spec = {
-    -- import your plugins
     { import = "plugins" },
   },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = false },
 })
 
 vim.cmd.colorscheme("gruvbox")
