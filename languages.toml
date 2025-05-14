@@ -1,0 +1,20 @@
+[language-server.pyright]
+command = "uv"
+args = ["run", "pyright-langserver", "--stdio"]
+
+
+
+[[language]]
+name = "python"
+shebangs = ["uv"]
+language-servers = [ { name = "pyright"} ]
+indent = { tab-width = 4, unit = "  " }
+roots = [".venv", "pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json"]
+auto-format = true
+
+[language-server.taplo.config]
+root_dir = [".git", "*.toml"]
+
+[[language]]
+name = "toml"
+indent = { tab-width = 4, unit = "    " }
