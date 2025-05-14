@@ -14,7 +14,7 @@ return {
         dependencies = { "williamboman/mason.nvim" },
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "pyright", "ruff" },
+                ensure_installed = { "pyright", "ruff", "rust_analyzer" },
             })
         end,
     },
@@ -46,6 +46,30 @@ return {
                     end,
             })
             
+            require("lspconfig").rust_analyzer.setup({
+                on_attach = function(client, bufnr)
+                    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+                end,
+                settings = {
+                    ["rust-analyzer"] = {
+                        imports = {
+                            granularity = {
+                                group = "module",
+                            },
+                            prefix = "self",
+                        },
+                        cargo = {
+                            buildScripts = {
+                                enable = true,
+                            },
+                        },
+                        procMacro = {
+                            enable = true,
+                        },
+                    },
+                },
+            })
+            
             -- Keybindings and autocommands
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(args)
@@ -62,6 +86,20 @@ return {
                 vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- Show documentation
                 vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts) -- Rename symbol
                 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts) -- Code actions
+                -- Show all LSP errors in quickfix
+                vim.keymap.set("n", "<leader>q", function()
+                        vim.diagnostic.setqflist({ open = true })
+                    end, { buffer = buf, desc = "Populate quickfix with LSP diagnostics" })
+                -- Show all LSP erro at current line 
+                vim.keymap.set(
+                    "n",
+                    "<leader>e",
+                    function()
+                        vim.diagnostic.open_float(nil, { focus = false, scope = "line" })
+                    end,
+                    { desc = "Show diagnostic message in float" }
+                )
+
                 end,
             })
         end,
