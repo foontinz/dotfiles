@@ -2,8 +2,6 @@
 command = "uv"
 args = ["run", "pyright-langserver", "--stdio"]
 
-
-
 [[language]]
 name = "python"
 shebangs = ["uv"]
@@ -18,3 +16,7 @@ root_dir = [".git", "*.toml"]
 [[language]]
 name = "toml"
 indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "markdown"
+file-types = ["MD", "md", "livemd", "markdown", "mdx", "mkd", "mkdn", "mdwn", "mdown", "markdn", "mdtxt", "mdtext", "workbook", { glob = "PULLREQ_EDITMSG" }]
