@@ -4,6 +4,15 @@ theme = "onedark"
 line-number = "relative"
 mouse = false
 
+default-yank-register = "+"
+completion-timeout = 50
+
+shell = ["zsh", "-c"]
+
+[editor.indent-guides]
+render = true
+skip-levels = 1 
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
