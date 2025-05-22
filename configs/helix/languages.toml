@@ -6,7 +6,7 @@ args = ["run", "pyright-langserver", "--stdio"]
 name = "python"
 shebangs = ["uv"]
 language-servers = [ { name = "pyright"} ]
-indent = { tab-width = 4, unit = "  " }
+indent = { tab-width = 4, unit = "    " }
 roots = [".venv", "pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json"]
 auto-format = true
 
@@ -23,8 +23,8 @@ file-types = ["MD", "md", "livemd", "markdown", "mdx", "mkd", "mkdn", "mdwn", "m
 
 [[language]]
 name = "typescript"
-indent = { tab-width = 4, unit = " " }
+indent = { tab-width = 4, unit = "    " }
 
 [[language]]
 name = "tsx"
-indent = { tab-width = 4, unit = " " }
+indent = { tab-width = 4, unit = "    " }
