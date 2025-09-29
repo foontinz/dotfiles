@@ -24,6 +24,7 @@ file-types = ["MD", "md", "livemd", "markdown", "mdx", "mkd", "mkdn", "mdwn", "m
 [[language]]
 name = "typescript"
 indent = { tab-width = 4, unit = "    " }
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
 [[language]]
 name = "tsx"
