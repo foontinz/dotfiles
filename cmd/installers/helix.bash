@@ -16,4 +16,4 @@ cargo install --path helix-term --locked
 
 # move config
 cp -r "$ROOT_PATH/configs/helix" "$CONFIG_PATH" 
-ln -Ts "$HELIX_PATH/runtime" "$HELIX_CONFIG_PATH/runtime"
+ln -sf "$HELIX_PATH/runtime" "$HELIX_CONFIG_PATH/runtime"
