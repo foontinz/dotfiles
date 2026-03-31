@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# source profile to pick up existing env (e.g. homebrew, path)
+[ -f "$HOME/.zprofile" ] && . "$HOME/.zprofile"
+[ -f "$HOME/.zshrc" ] && . "$HOME/.zshrc"
+
 export NVM_DIR="$HOME/.nvm"
 
 mkdir -p "$NVM_DIR"

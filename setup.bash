@@ -17,6 +17,9 @@ bash "$INSTALLERS/rust.bash"
 echo "==> zsh + oh-my-zsh"
 bash "$INSTALLERS/zsh.bash"
 
+echo "==> tooling (uv, fzf)"
+bash "$INSTALLERS/tooling.bash"
+
 echo "==> nvm + node"
 bash "$INSTALLERS/nvm.bash"
 
