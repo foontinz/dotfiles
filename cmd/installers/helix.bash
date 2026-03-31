@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ROOT_PATH="$HOME/dev/dotfiles"
-HELIX_PATH="$HOME/dev/nightly-builds/helix"
+ROOT_PATH="$HOME/dev/personal/dotfiles"
+HELIX_PATH="$HOME/dev/nightly/helix"
 CONFIG_PATH="$HOME/.config"
 HELIX_CONFIG_PATH="$CONFIG_PATH/helix"
 

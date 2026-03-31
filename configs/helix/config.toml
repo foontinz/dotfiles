@@ -3,6 +3,7 @@ theme = "onedark"
 [editor]
 line-number = "relative"
 mouse = false
+clipboard-provider = "pasteboard"
 
 default-yank-register = "+"
 completion-timeout = 50
