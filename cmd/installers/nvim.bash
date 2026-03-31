@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ROOT_PATH="$HOME/dev/dotfiles"
-NEOVIM_PATH="$HOME/dev/nightly-builds/neovim"
+ROOT_PATH="$HOME/dev/personal/dotfiles"
+NEOVIM_PATH="$HOME/dev/nightly/neovim"
 NEOVIM_CONFIG_PATH="$HOME/.config/nvim"
 NEOVIM_CACHE="$HOME/.cache/nvim"
 NEOVIM_STATE="$HOME/.local/share/nvim"
@@ -22,4 +22,4 @@ sudo make CMAKE_BUILD_TYPE=Release
 sudo make install
 
 # add config
-cp -r "$ROOT_PATH/configs/nvim" $NEOVIM_CONFIG_PATH
+cp -r "$ROOT_PATH/configs/nvim" "$NEOVIM_CONFIG_PATH"

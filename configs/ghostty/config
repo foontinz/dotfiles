@@ -1,0 +1,12 @@
+
+window-title-font-family="MonoLisa Variable"
+
+font-family="MonoLisa Variable"
+font-size=21
+font-feature=-liga
+font-thicken=true
+keybind = shift+enter=text:\x1b\r
+
+
+# Inherit working directory when opening new tabs/windows
+window-inherit-working-directory = true
