@@ -54,7 +54,6 @@ esac
 export PATH="$HOME/.amp/bin:$PATH"
 
 export TERMINAL="ghostty"
-alias nigga="cd $HOME/dev/personal/personal_agent && codex"
 alias claude="claude --allow-dangerously-skip-permissions"
 alias cc="claude"
 
