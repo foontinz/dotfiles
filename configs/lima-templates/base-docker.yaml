@@ -1,6 +1,18 @@
 # Runtime base — uses pre-built image from build-base-image.bash
 # No provisioning needed, everything is baked into the disk image.
+#
+# Host prerequisite: ~/.config/lima-secrets/env contains exports like:
+#   export GH_TOKEN="ghp_..."
+#   export ANTHROPIC_API_KEY="x"
+#   export ANTHROPIC_BASE_URL="http://host.lima.internal:3456"  # Meridian proxy
 disk: 40GiB
+
+# Skip Lima's rootless containerd setup — our baked image already has Docker
+# via apt-get. Without this, every VM start re-runs cidata's install-buildkit
+# step which can take minutes.
+containerd:
+  system: false
+  user: false
 
 images:
   - location: "~/.lima/_images/base-docker.img"
@@ -9,12 +21,5 @@ images:
 mounts:
   - location: "~/.ssh"
     writable: false
-
-provision:
-  - mode: user
-    script: |
-      #!/bin/bash
-      set -eux -o pipefail
-      # Symlink host SSH keys into guest user's home
-      ln -sf /Users/barbos/.ssh/id_ed25519 ~/.ssh/id_ed25519
-      ln -sf /Users/barbos/.ssh/id_ed25519.pub ~/.ssh/id_ed25519.pub
+  - location: "~/.config/lima-secrets"
+    writable: false

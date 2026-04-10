@@ -26,6 +26,9 @@ bash "$INSTALLERS/nvm.bash"
 echo "==> npm tooling"
 bash "$INSTALLERS/npm_tooling.bash"
 
+echo "==> meridian service"
+bash "$INSTALLERS/meridian.bash"
+
 echo "==> helix"
 bash "$INSTALLERS/helix.bash"
 
