@@ -60,3 +60,5 @@ alias cc="claude"
 
 # Added by Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+export PATH="$HOME/dev/llama.cpp/build/bin:$PATH"

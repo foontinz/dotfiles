@@ -23,6 +23,26 @@ provision:
       corepack enable
       corepack prepare pnpm@latest --activate
 
-portForwards:
-  - guestPortRange: [5170, 5200]
-    hostPortRange: [5170, 5200]
+      # Expose the nvm-managed binaries system-wide.
+      #
+      # Without this, only interactive non-login shells (which source ~/.bashrc)
+      # see node/npm. But `limactl shell … -- bash -lc` runs a *login* shell,
+      # which reads ~/.profile (not ~/.bashrc), so node ends up invisible to
+      # every command issued by the orchestrator. Symlinking into /usr/local/bin
+      # makes the binaries visible to any shell, regardless of init files.
+      NODE_BIN_DIR="$(dirname "$(nvm which 22)")"
+      for bin in node npm npx corepack; do
+        if [ -x "$NODE_BIN_DIR/$bin" ]; then
+          sudo ln -sf "$NODE_BIN_DIR/$bin" "/usr/local/bin/$bin"
+        fi
+      done
+      # pnpm was just corepack-prepared; its shim lives alongside corepack.
+      PNPM_SHIM="$NODE_BIN_DIR/pnpm"
+      if [ -x "$PNPM_SHIM" ]; then
+        sudo ln -sf "$PNPM_SHIM" /usr/local/bin/pnpm
+      fi
+
+# portForwards intentionally omitted: orchestrator-spawned workers are
+# headless and host ports would collide across parallel VMs. If you need
+# a dev server visible to the host, create the VM with an explicit port
+# override or use a dedicated non-worker VM.
