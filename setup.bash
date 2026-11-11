@@ -10,7 +10,7 @@ usage() {
 Usage: setup.bash [--full]
 
 Runs the general development setup by default.
-  --full  Also install personal machine configuration (Git identity, SSH,
+  --full  Also install personal machine configuration (Git identity, SSH key,
           TouchBistro, and Google Workspace MCP)
 EOF
 }

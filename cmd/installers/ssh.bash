@@ -1,18 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
-. "$REPO_ROOT/cmd/lib.bash"
-
-# create ssh directory if needed
+# SSH host config is machine-local and intentionally not tracked in this
+# public repo. Keep hosts in ~/.ssh/config directly.
 mkdir -p "$HOME/.ssh"
 chmod 700 "$HOME/.ssh"
+touch "$HOME/.ssh/config"
+chmod 600 "$HOME/.ssh/config"
 
-# copy config
-link "$REPO_ROOT/configs/ssh/config" "$HOME/.ssh/config"
-
-# generate key if not present
+# generate key if not present (prompts for a passphrase)
 if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
-    # Prompts for a passphrase; UseKeychain in ssh config keeps it painless.
     ssh-keygen -t ed25519 -f "$HOME/.ssh/id_ed25519"
 fi
