@@ -1,0 +1,122 @@
+# Pustota dark — port of https://github.com/pustota-theme/pustota
+# Upstream c6947bb53496f4c543c9d461a6da3d62269180b4; MIT license in ../pustota/LICENSE
+# Definitions use custom query captures; references remain neutral.
+"attribute" = "fg"
+"type" = "fg"
+"type.definition" = "entity"
+"constructor" = "fg"
+"constant" = "constant"
+"constant.character" = "string"
+"constant.character.escape" = "string"
+"string" = "string"
+"comment" = "comment"
+"variable" = "fg"
+"label" = "fg"
+"punctuation" = "fg"
+"keyword" = "keyword"
+"operator" = "keyword"
+"function" = "fg"
+"function.definition" = "func"
+"function.method.definition" = "func"
+"function.macro" = "fg"
+"namespace" = "fg"
+"namespace.definition" = "entity"
+"tag" = "entity"
+"special" = "keyword"
+"markup.heading" = { fg = "func", modifiers = ["bold"] }
+"markup.list" = "keyword"
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"markup.link.url" = { fg = "entity", underline = { style = "line" } }
+"markup.link.text" = "func"
+"markup.link.label" = "constant"
+"markup.quote" = "comment"
+"markup.raw" = "string"
+"diff.plus" = "added"
+"diff.minus" = "removed"
+"diff.delta" = "modified"
+"ui.background" = { fg = "fg", bg = "bg" }
+"ui.text" = "fg"
+"ui.text.focus" = { fg = "fg", bg = "selection" }
+"ui.text.inactive" = "comment"
+"ui.text.info" = "fg"
+"ui.cursor" = { fg = "bg", bg = "accent" }
+"ui.cursor.primary" = { fg = "bg", bg = "accent" }
+"ui.cursor.match" = { bg = "border", modifiers = ["bold"] }
+"ui.cursor.insert" = { fg = "bg", bg = "string" }
+"ui.cursor.select" = { fg = "bg", bg = "entity" }
+"ui.cursor.primary.insert" = { fg = "bg", bg = "string" }
+"ui.cursor.primary.select" = { fg = "bg", bg = "entity" }
+"ui.cursorline.primary" = { bg = "line" }
+"ui.cursorline.secondary" = { bg = "line" }
+"ui.cursorcolumn.primary" = { bg = "line" }
+"ui.selection" = { bg = "inactive" }
+"ui.selection.primary" = { bg = "selection" }
+"ui.linenr" = "comment"
+"ui.linenr.selected" = "accent"
+"ui.statusline" = { fg = "fg", bg = "line" }
+"ui.statusline.inactive" = { fg = "comment", bg = "bg" }
+"ui.statusline.normal" = { fg = "bg", bg = "accent" }
+"ui.statusline.insert" = { fg = "bg", bg = "string" }
+"ui.statusline.select" = { fg = "bg", bg = "entity" }
+"ui.statusline.separator" = "border"
+"ui.bufferline" = { fg = "comment", bg = "bg" }
+"ui.bufferline.active" = { fg = "accent", bg = "line" }
+"ui.bufferline.background" = { bg = "bg" }
+"ui.popup" = { fg = "fg", bg = "bg" }
+"ui.popup.info" = { fg = "fg", bg = "bg" }
+"ui.window" = "border"
+"ui.help" = { fg = "fg", bg = "bg" }
+"ui.menu" = { fg = "fg", bg = "bg" }
+"ui.menu.selected" = { fg = "accent", bg = "suggest" }
+"ui.menu.scroll" = { fg = "comment", bg = "line" }
+"ui.virtual" = "ui"
+"ui.virtual.whitespace" = "uiMuted"
+"ui.virtual.indent-guide" = "uiMuted"
+"ui.virtual.ruler" = { bg = "uiMuted" }
+"ui.virtual.inlay-hint" = { fg = "comment" }
+"ui.virtual.wrap" = "ui"
+"ui.virtual.jump-label" = { fg = "keyword", modifiers = ["bold"] }
+"ui.highlight" = { bg = "selection" }
+"ui.highlight.frameline" = { bg = "inactive" }
+"ui.gutter" = { bg = "bg" }
+"ui.debug.breakpoint" = "error"
+"ui.debug.active" = "accent"
+"warning" = "accent"
+"error" = "error"
+"info" = "entity"
+"hint" = "comment"
+"diagnostic.warning" = { underline = { color = "accent", style = "curl" } }
+"diagnostic.error" = { underline = { color = "error", style = "curl" } }
+"diagnostic.info" = { underline = { color = "entity", style = "dotted" } }
+"diagnostic.hint" = { underline = { color = "comment", style = "dotted" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+"tabstop" = { bg = "inactive" }
+
+[palette]
+bg = "#0a0e14"
+line = "#00010a"
+fg = "#b3b1ad"
+hint = "#626a73"
+ui = "#4d5566"
+uiDim = "#414856"
+uiMuted = "#373d49"
+dropdownBorder = "#2b303a"
+panelBorder = "#000000"
+comment = "#626a73"
+string = "#c2d94c"
+keyword = "#ff8f40"
+func = "#ffb454"
+entity = "#59c2ff"
+constant = "#e6b450"
+accent = "#e6b450"
+selection = "#273747"
+inactive = "#1b2733"
+border = "#304357"
+suggest = "#1c2a42"
+added = "#91b362"
+removed = "#d96c75"
+modified = "#6994bf"
+error = "#ff3333"

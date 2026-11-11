@@ -1,0 +1,67 @@
+# Keep PATH and fpath free of duplicates no matter how many files prepend to them.
+typeset -U path fpath
+
+# Homebrew is loaded in ~/.zprofile for login shells; cover non-login shells too.
+if [[ -z "$HOMEBREW_PREFIX" ]]; then
+    for _brew in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+        [[ -x $_brew ]] && { eval "$($_brew shellenv zsh)"; break; }
+    done
+    unset _brew
+fi
+
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git direnv fzf)
+
+# Extra completions must be on fpath before oh-my-zsh runs compinit (it runs it once).
+[[ -d "$HOME/.zfunc" ]] && fpath+=("$HOME/.zfunc")
+
+source "$ZSH/oh-my-zsh.sh"
+
+# Start or attach to the default tmux session.
+if command -v tmux >/dev/null 2>&1 && [[ -z "$TMUX" && -t 0 && -t 1 ]]; then
+    exec tmux new-session -A -s 0
+fi
+
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+else
+    export EDITOR='hx'
+fi
+export TERMINAL="ghostty"
+
+# --- PATH -------------------------------------------------------------------
+export PATH="$HOME/.local/bin:$PATH"            # uv tools, claude, hf
+[[ -d "${GOPATH:-$HOME/go}/bin" ]] && export PATH="$PATH:${GOPATH:-$HOME/go}/bin"  # go install targets
+
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+[[ -s "$BUN_INSTALL/_bun" ]] && source "$BUN_INSTALL/_bun"
+
+[[ -d "$HOME/.kimi-code/bin" ]] && export PATH="$HOME/.kimi-code/bin:$PATH"
+
+# --- Node (nvm, lazy) -------------------------------------------------------
+# Loading nvm.sh costs ~230ms per shell. Put the default Node on PATH directly
+# and only load nvm itself the first time `nvm` is called.
+export NVM_DIR="$HOME/.nvm"
+if [[ -d "$NVM_DIR/versions/node" ]]; then
+    _nvm_default="$(<"$NVM_DIR/alias/default" 2>/dev/null)"
+    [[ $_nvm_default == (node|stable|) ]] && _nvm_default=""
+    _nvm_bin=("$NVM_DIR"/versions/node/v${_nvm_default#v}*(N/nOn[1]))
+    [[ -n $_nvm_bin ]] && export PATH="$_nvm_bin/bin:$PATH"
+    unset _nvm_default _nvm_bin
+fi
+nvm() {
+    unset -f nvm
+    [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+    nvm "$@"
+}
+
+# --- Completion & aliases ---------------------------------------------------
+command -v uv >/dev/null 2>&1 && eval "$(uv generate-shell-completion zsh)"
+zstyle ':completion:*' menu select
+
+alias python3=python3.13

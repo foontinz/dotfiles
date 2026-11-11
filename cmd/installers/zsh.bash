@@ -2,6 +2,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+. "$REPO_ROOT/cmd/lib.bash"
 OH_MY_ZSH_DIR="$HOME/.oh-my-zsh"
 
 if ! command -v zsh >/dev/null 2>&1; then
@@ -24,8 +25,9 @@ fi
     exit 1
 }
 
-# Install the tracked shell configuration only after Zsh and Oh My Zsh are ready.
-cp "$REPO_ROOT/cmd/zsh.bash" "$HOME/.zshrc"
-cp "$REPO_ROOT/cmd/zprofile.zsh" "$HOME/.zprofile"
+# Link the tracked shell configuration only after Zsh and Oh My Zsh are ready.
+link "$REPO_ROOT/configs/zsh/zshrc" "$HOME/.zshrc"
+link "$REPO_ROOT/configs/zsh/zprofile" "$HOME/.zprofile"
+link "$REPO_ROOT/configs/zsh/zshenv" "$HOME/.zshenv"
 
 printf 'Zsh ready: %s\n' "$(command -v zsh)"

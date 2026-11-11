@@ -2,6 +2,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+. "$REPO_ROOT/cmd/lib.bash"
 HELIX_VERSION="25.07.1"
 HELIX_PATH="$HOME/dev/nightly/helix"
 HELIX_CONFIG_PATH="$HOME/.config/helix"
@@ -47,7 +48,9 @@ if [[ -e "$HELIX_CONFIG_PATH" ]]; then
     cp -R "$HELIX_CONFIG_PATH" "$BACKUP_ROOT/config"
 fi
 mkdir -p "$HELIX_CONFIG_PATH"
-cp -R "$REPO_ROOT/configs/helix/." "$HELIX_CONFIG_PATH/"
+link "$REPO_ROOT/configs/helix/config.toml" "$HELIX_CONFIG_PATH/config.toml"
+link "$REPO_ROOT/configs/helix/languages.toml" "$HELIX_CONFIG_PATH/languages.toml"
+link "$REPO_ROOT/configs/helix/themes/pustota.toml" "$HELIX_CONFIG_PATH/themes/pustota.toml"
 
 RUNTIME_PATH="$HELIX_CONFIG_PATH/runtime"
 if [[ -L "$RUNTIME_PATH" ]]; then

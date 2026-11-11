@@ -9,3 +9,8 @@
 *.key
 credentials.json
 secrets/
+
+# OS / scratch files
+.DS_Store
+*.log
+clipboard*
